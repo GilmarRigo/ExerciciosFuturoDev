@@ -1,0 +1,1 @@
+INSERT INTO public.tab_pessoa(cep, cidade, data_nascimento, email, estado, hora_nascimento, logradouro, nome) VALUES ('80.000-000', 'Florianópolis', '01/01/1970', 'gilmar@gilmar.com.br', 'SC', '08:00', 'Rua Azul, 900','Gilmar');
