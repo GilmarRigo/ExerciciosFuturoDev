@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barrio&display=swap" rel="stylesheet">
+    <title>Cursos Realizados</title>
+</head>
+<body onload="funcao1()"> 
+    <div class="container">
+    <header class="item1">        
+        <img src="imagem/avatar" alt="Foto" height="100" width="100" align="right" class="image">
+        <h1>CURRICULUM VITAE</h1>
+        <h3>Nome: Gilmar Rigo</h3>
+        <br>  
+        <hr>      
+    </header>
+    <main class="item2">
+        <h2>Cursos</h2>
+        <li>Técnico em Transações Imobiliárias</li>
+        <li>Gestão de Estoques</li>
+        <li>Gestão de Fluxo de Caixa</li>
+        <br>
+        <hr>
+        <br>
+        <h2>Idiomas</h2>
+        <table class="tabela">
+            <th>Instituição</th>
+            <th>Idioma</th>
+            <th>Ano</th>
+            <tr>
+                <td>KNN</td>
+                <td>Inglês</td>
+                <td>2019</td>
+            </tr>
+            <tr>
+                <td>Fisk</td>
+                <td>Espanhol</td>
+                <td>2020</td>
+            </tr>
+        </table>
+
+    </main>
+    <aside class="item3">
+        <li style="list-style:none"><h3>MENU</h3>
+            <h2><ul><a href="index.html">Dados Pessoais</a></ul></h2>
+            <h2><ul><a href="formacaoAcademica.html">Formação Acadêmica</a></ul></h2>
+            <h2><ul><a href="cursosRealizados.html">Cursos e Idiomas</a></ul></h2>
+            <h2><ul><a href="experienciasProfissionais.html">Experiêcia Profissional</a></ul></h2>  
+            <h2><ul><a href="videos.html">Vídeos</a></ul></h2>  
+            <h2><ul><a href="contato.html">Contato</a></ul></h2>            
+        </li> 
+    </aside>    
+    <footer class="item4">
+        <br>
+        <div align="right">Data e hora do acesso: <span onload="funcao1()" id="data1"></span></div>
+        <p> * Gilmar Rigo - 2022 * </p>
+    </footer>
+</div>  
+</body>
+<script>
+    function funcao1(){
+
+        const data = new Date()
+
+        const dia = String(data.getDate()).padStart(2, '0')
+
+        const mes = String(data.getMonth()).padStart(2,'0')
+
+        const ano = data.getFullYear()
+
+        const hora = String(data.getHours()).padStart(2, '0')
+
+        const minutos = String(data.getMinutes()).padStart(2, '0')
+
+        const dataAtual = `${dia}/${mes}/${ano} às ${hora}:${minutos}`
+        
+
+        console.log(dataAtual)
+        //alert(dataAtual);   
+        document.getElementById('data1').innerHTML = dataAtual;
+    }
+
+    </script>
+</html>

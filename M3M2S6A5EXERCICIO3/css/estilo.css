@@ -1,0 +1,9 @@
+ul:hover, :active{
+    background-color: dimgrey; 
+    
+}
+
+a:hover, :active{
+    text-decoration: none;
+    color: aliceblue;
+}
