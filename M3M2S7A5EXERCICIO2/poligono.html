@@ -1,0 +1,61 @@
+<html lang="pt-br">
+  <p>Coloque os dados na calculadora e calcule se é ou não Polígono:</p>
+  <input type="number" name="qtdLados" text="Lados" placeholder="Ex: 1" maxlength="2" id="qtdLados"  min="0" max="119"> <span class="caption">lados</span>
+  <div class="field-height"> <label>Lados</label>
+  </div>
+  <input type="number" name="tamanho" text="Tamanho" placeholder="Ex: 30" maxlength="2" id="tamanho" min="0" max="225"> <span class="caption">cm</span>
+  <div class="field-weight"> <label>Tamanho</label>
+    <br>
+    <br>
+    <input type="button" id="submit" name="calculate" value="Calcular">
+  </div>
+  </div>
+</body>
+<script>
+   const calculate = document.getElementById('submit')
+   
+   calculate.addEventListener('click', () => {
+
+    let qtdLados =  document.getElementById('qtdLados').value
+    let tamanho =   document.getElementById('tamanho').value
+    let poligono;
+    let tamTotal;
+
+   switch(qtdLados){
+    case '0':
+        poligono = "Não é um polígono"
+        break
+    case '1':
+        poligono = "Não é um polígono"
+        break
+    case '2':
+        poligono = "Não é um polígono"
+        break
+    case '3':
+        poligono = "Triangulo"
+        tamTotal = tamanho * qtdLados
+        break
+    case '4':
+        poligono = "Quadrado"
+        tamTotal = tamanho * qtdLados
+        break
+    case '5':
+        poligono = "Pentágono"
+        tamTotal = tamanho * qtdLados
+        break
+        default:
+            alert("Número inválido ou não cadastrado! Quantidade de lados deve ser entre 3 e 5.")
+   }
+    
+   if(qtdLados >=3 & qtdLados <=5){
+    alert('Você digitou que o item tem ' + qtdLados + ' lados e cada lado tem ' + tamanho + ' cm ' +
+    '. Esse item é um ' + poligono + ' e o tamanho total é ' + tamTotal + ' cm.');
+   } else {
+    alert("Número inválido ou não cadastrado! Quantidade de lados deve ser entre 3 e 5.")
+   }     
+    
+
+   
+  })
+</script>
+</html>

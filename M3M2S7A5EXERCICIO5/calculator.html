@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--<link href="calculator.css" rel="stylesheet">
+    <script src="calculator.js"></script>-->    
+    <title>Calculator!</title>
+    <style>
+        table {
+            width: 50%;
+        }
+        button {
+            width: 100%;
+            font-size: 150%;
+        }
+        .ac {
+            color: red;
+        }
+
+        #result {
+          min-height: 1.6em;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="buttons-container">
+    <table>
+      <tr>
+        <td colspan="4"><button id="result">
+            <div id="calc">               
+                <div id="operations">
+                    <div id="previous-operation"></div>
+                    <div id="current-operation"></div>
+                </div>              
+        </button></td>
+      </tr>     
+      <tr>
+        <td><button>1</button></td>
+        <td><button>2</button></td>
+        <td><button>3</button></td>
+        <td><button>+</button></td>
+      </tr>
+      <tr>
+        <td><button>4</button></td>
+        <td><button>5</button></td>
+        <td><button>6</button></td>
+        <td><button>-</button></td>
+      </tr>
+      <tr>
+        <td><button>7</button></td>
+        <td><button>8</button></td>
+        <td><button>9</button></td>
+        <td><button>*</button></td>
+      </tr>
+      <tr>
+        
+        <td colspan="1"><button>0</button></td>
+        <td colspan="1"><button>.</button></td>
+        <td colspan="1"><button>/</button></td>     
+        <td colspan="1" id='equal-btn'><button>=</button></td>        
+      </tr>
+      <tr>
+        <td colspan="2"><button class="ac">AC</button></td>
+        <td colspan="2"><button class="ac">DEL</button></td>
+               
+      </tr>
+    </div>
+    </div>
+    </table>
+  </body>
+  <script>
+    const previousOperationText = document.querySelector("#previous-operation");
+    const currentOperationText = document.querySelector("#current-operation");
+    const buttons = document.querySelectorAll("#buttons-container button");
+
+    class Calculator{
+        constructor(previousOperationText, currentOperationText){
+            this.previousOperationText = previousOperationText
+            this.currentOperationText = currentOperationText
+            this.currentOperation = ""
+        }
+
+        addDigit(digit) {
+
+            if (digit === "." && this.currentOperationText.innerText.includes(".")){
+                return;                
+            }
+
+            this.currentOperation = digit
+            this.updateScreen()
+        }
+
+        processOperation(operation){
+
+            if(this.currentOperationText.innerText === ""  && operation !== "AC"){
+                if(this.previousOperationText.innerText !== ""){
+                    this.changeOperation(operation);
+                }
+                return;
+            }
+
+            let operationValue;
+            const previous = +this.previousOperationText.innerText.split(" ")[0];
+            const current = +this.currentOperationText.innerText;
+
+            switch(operation){
+                case "+":
+                    operationValue = previous + current
+                    this.updateScreen(operationValue, operation, current, previous);
+                    break;
+                    case "-":
+                    operationValue = previous - current
+                    this.updateScreen(operationValue, operation, current, previous);
+                    break;
+                    case "/":
+                    operationValue = previous / current
+                    this.updateScreen(operationValue, operation, current, previous);
+                    break;
+                    case "*":
+                    operationValue = previous * current
+                    this.updateScreen(operationValue, operation, current, previous);
+                    break;
+                    case "DEL":
+                    this.processDelOperator();
+                    break;                 
+                    case "AC":
+                    this.processClearOperation();
+                    break;
+                    case "=":
+                    this.processEqualOperator();
+                    break;
+                default:
+                    return;                   
+            }
+        }
+        updateScreen(
+            operationValue = null,
+            operation = null,
+            current = null,
+            previous = null
+        ){
+            console.log(operationValue, operation, current, previous)
+           
+            if(operationValue === null){
+            this.currentOperationText.innerText += this.currentOperation; 
+            } else {
+                if(previous === 0){
+                    operationValue = current
+                }
+                this.previousOperationText.innerText = `${operationValue} ${operation}`;
+                this.currentOperationText.innerText = "";
+            }
+                
+        }
+
+        changeOperation(operation){
+            const mathOperations = ["*", "/", "+", "-",]
+
+            if(!mathOperations.includes(operation)){
+                return
+            }
+            this.previousOperationText.innerText = this.previousOperationText.innerText.slice(0, -1) + operation;
+        }
+
+        processDelOperator(){
+            this,currentOperationText.innerText = this.currentOperationText.innerText.slice(0, -1);
+        }
+
+        processClearOperation(){
+            this.currentOperationText.innerText = "";
+            this.previousOperationText.innerText = "";
+        }
+
+        processEqualOperator(){
+            const operation = previousOperationText.innerText.split(" ")[1];
+
+            this.processOperation(operation);
+        }
+
+    }
+
+    const calc = new Calculator(previousOperationText, currentOperationText);
+
+    buttons.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+            const value = e.target.innerText;
+            if(+value >= 0 || value === "."){
+                calc.addDigit(value);            
+            } else {
+                calc.processOperation(value);
+               
+            }
+        });
+    });
+  
+
+  </script>
+</html>

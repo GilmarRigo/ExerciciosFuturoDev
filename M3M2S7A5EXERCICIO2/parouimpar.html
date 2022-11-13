@@ -1,0 +1,27 @@
+<html lang="pt-br">
+  <p>Vamos descobrir se o número é par ou impar ?</p>
+  <input type="number" name="numero" text="Número" placeholder="Ex: 1" maxlength="1000000" id="numero"  min="0" max="1000000"> <span class="caption"></span>
+  <div class="field-height"> <label></label>
+    <br>
+    <br>
+    <input type="button" id="submit" name="calculate" value="Calcular">
+  </div>
+  </div>
+</body>
+<script>
+   const calculate = document.getElementById('submit')
+   
+   calculate.addEventListener('click', () => {
+
+    let numero =  document.getElementById('numero').value
+    
+    let resultado = numero % 2;
+
+    if(resultado == 0) {
+        alert("Você digitou o número " + numero + ' esse número é par.')
+    } else {
+        alert("Você digitou o número " + numero + ' esse número é impar.')
+    }    
+  })
+</script>
+</html>

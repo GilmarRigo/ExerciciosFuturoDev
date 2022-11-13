@@ -1,0 +1,61 @@
+<html lang="pt-br">
+  <p>Coloque os seus dados na calculadora e calcule o seu IMC:</p>
+  <div class="field-age"> <label>Idade</label>
+  </div>
+  <input type="number" name="age" text="Idade" placeholder="Ex: 35" maxlength="200" id="age"  min="0" max="119"> <span class="caption">anos</span>
+  <div class="field-height"> <label>Altura</label>
+  </div>
+  <input type="number" name="height" text="Altura" placeholder="Ex: 165" maxlength="200" id="height" min="0" max="225"> <span class="caption">cm</span>
+  <div class="field-weight"> <label>Peso</label>
+  </div>
+  <input type="number" name="weight" text="Peso" placeholder="Ex: 62,5" maxlength="200" id="weight"  min="0" max="300"> <span class="caption">kg</span>
+  <div>
+    <input type="button" id="submit" name="calculate" value="Calcular">
+  </div>
+  </div>
+</body>
+<script>
+   const calculate = document.getElementById('submit')
+    // Crie a lógica a partir deste ponto
+   calculate.addEventListener('click', () => {
+
+    let idade =  document.getElementById('age').value
+    let altura =   document.getElementById('height').value
+    let peso =   document.getElementById('weight').value
+    
+    let resultado = peso / (altura * altura);
+    let resultadoDescricao;
+
+    if(resultado < 16){
+      resultadoDescricao = "Magreza grave"
+    }
+    else if (resultado >= 16 & resultado < 17){
+      resultadoDescricao = "Magreza moderada"
+    }
+    else if(resultado >=17 & resultado < 18.5){
+      resultadoDescricao = "Magreza leve"
+    }
+    else if(resultado >= 18.5 & resultado < 25){
+      resultadoDescricao = "Saudável"
+    }
+    else if(resultado >= 25 & resultado < 30){
+      resultadoDescricao = "Sobrepeso"
+    }
+    else if(resultado >= 30 & resultado < 35){
+      resultadoDescricao = "Obesidade grau I"
+    }
+    else if(resultado >= 35 & resultado < 40){
+      resultadoDescricao = "Obesidade grau II"
+    }
+    else if(resultado >= 40){
+      resultadoDescricao = "Obesidade grau III"
+    }
+       
+    alert('Seu IMC é ' + resultado + ' e a situação do seu IMC é ' + resultadoDescricao);
+
+    let imc = [idade, altura, peso]
+
+    console.table(imc)
+  })
+</script>
+</html>
