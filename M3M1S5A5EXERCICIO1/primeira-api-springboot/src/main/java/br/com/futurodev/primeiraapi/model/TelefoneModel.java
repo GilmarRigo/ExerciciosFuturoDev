@@ -3,11 +3,12 @@ package br.com.futurodev.primeiraapi.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "telefone")
-public class Telefone {
+public class TelefoneModel {
 
 
     //@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -25,13 +26,13 @@ public class Telefone {
     @ManyToOne
     @JoinColumn(name = "idUsuario", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_usuario"))
     @JsonBackReference
-    private Usuario usuario;
+    private UsuarioModel usuario;
 
-    public Usuario getUsuario() {
+    public UsuarioModel getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(UsuarioModel usuario) {
         this.usuario = usuario;
     }
 
@@ -63,7 +64,7 @@ public class Telefone {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Telefone that = (Telefone) o;
+        TelefoneModel that = (TelefoneModel) o;
         return id.equals(that.id);
     }
 

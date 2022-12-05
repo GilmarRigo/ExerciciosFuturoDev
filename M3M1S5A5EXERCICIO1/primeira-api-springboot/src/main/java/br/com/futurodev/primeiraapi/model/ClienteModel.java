@@ -1,15 +1,21 @@
 package br.com.futurodev.primeiraapi.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JoinColumnOrFormula;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.Reference;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TimeZone;
 
 @Entity
 @Table(name = "cliente")
 
-public class Cliente {
+public class ClienteModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "produto")
-public class Produto implements Serializable {
+public class ProdutoModel implements Serializable {
 
 
     //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_produto")
@@ -23,7 +23,7 @@ public class Produto implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Produto that = (Produto) o;
+        ProdutoModel that = (ProdutoModel) o;
         return Double.compare(that.precoUnitario, precoUnitario) == 0 && id.equals(that.id) && Objects.equals(descricao, that.descricao);
     }
 

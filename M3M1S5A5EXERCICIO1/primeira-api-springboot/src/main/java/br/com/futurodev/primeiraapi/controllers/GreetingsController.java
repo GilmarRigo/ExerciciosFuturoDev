@@ -1,11 +1,15 @@
 package br.com.futurodev.primeiraapi.controllers;
 
-import br.com.futurodev.primeiraapi.model.Produto;
+import br.com.futurodev.primeiraapi.model.ProdutoModel;
 import br.com.futurodev.primeiraapi.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.ArrayList;
+
 import java.util.List;
 
 /**
@@ -38,7 +42,7 @@ public class GreetingsController {
     @ResponseStatus(HttpStatus.OK)
     public String salvar(@PathVariable String descricao) {
 
-        Produto produto = new Produto();
+        ProdutoModel produto = new ProdutoModel();
         produto.setDescricao(descricao);
         produtoRepository.save(produto); //grava no banco de dados um produto
 
@@ -47,20 +51,20 @@ public class GreetingsController {
 
     @GetMapping(value = "/produtos")
     @ResponseBody // Retorna os dados no corpo da resposta
-    public ResponseEntity<List<Produto>> listaProdutos() {
+    public ResponseEntity<List<ProdutoModel>> listaProdutos() {
 
-        List<Produto> produtos = produtoRepository.findAll(); // Consulta no banco de dados todos os produtos
+        List<ProdutoModel> produtos = produtoRepository.findAll(); // Consulta no banco de dados todos os produtos
 
-        return new ResponseEntity<List<Produto>>(produtos, HttpStatus.OK); // Retorna a lista JSON
+        return new ResponseEntity<List<ProdutoModel>>(produtos, HttpStatus.OK); // Retorna a lista JSON
 
     }
 
     @PostMapping(value = "/produto/salvar") /* Mapeia URL */
     @ResponseBody /* Descreve a resposta informandp que o retorno será no corpo da requisição */
-    public ResponseEntity<Produto> salvar(@RequestBody Produto produto) { /* Recebe os dados para salvar */
+    public ResponseEntity<ProdutoModel> salvar(@RequestBody ProdutoModel produto) { /* Recebe os dados para salvar */
 
-        Produto prod = produtoRepository.save(produto);
-        return new ResponseEntity<Produto>(prod, HttpStatus.CREATED);
+        ProdutoModel prod = produtoRepository.save(produto);
+        return new ResponseEntity<ProdutoModel>(prod, HttpStatus.CREATED);
 
 }
 
