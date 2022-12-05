@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Agora foi</h1>
+    <label for=""> Digite seu cep:</label>
+    <input type="text" id="inputCep" required>
+    <button id="btn">Pegar CEP </button>
+
+    <hr>
+    <br>
+
+    <div id="cep1"></div>
+    <div id="espaco1"></div>
+    <div id="state1"></div>
+    <div id="city1"></div>
+
+    <script>
+        let element = document.getElementById('btn')
+        element.addEventListener("click", () => {
+            let meuCep = document.getElementById('inputCep').value
+            pegaCep(meuCep)
+            inputCep = '';
+
+        })
+        async function pegaCep(cepp) {
+            console.log(cepp)
+            cep = await (await fetch(`https://brasilapi.com.br/api/cep/v2/${cepp}`)).json()
+            console.log(cep + 'oi') 
+            if(cep.cep != undefined){                                                  
+            document.getElementById("cep1").innerHTML = 'CEP - ' + cep.city;        
+            document.getElementById('state1').innerHTML = 'ESTADO - ' + cep.state;  
+            document.getElementById('city1').innerHTML = 'CIDADE - ' + cep.city;         
+        }else{
+            alert('CEP NÃO ENCONTRADO!')
+    }        
+    }
+
+    </script>
+</body>
+
+</html>
